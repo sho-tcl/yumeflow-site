@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Yumeflow — Professional websites, SEO, and digital presence for construction companies and estate agencies in Malaysia. From Blueprint to Browser.">
+<title>Yumeflow — From Blueprint to Browser</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0F1F3D; --navy-deep: #080F1E; --navy-mid: #162845;
+    --gold: #C9A84C; --gold-light: #E2C97E; --gold-dim: #8A6E2F;
+    --cream: #F5F3EE; --cream-dim: #DDD9CF; --slate: #8A94A6;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy-deep); color: var(--cream); overflow-x: hidden; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(8,15,30,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: #fff; letter-spacing: 0.04em; text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { border: 1px solid var(--gold) !important; color: var(--gold) !important; padding: 0.45rem 1.25rem; }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--navy-deep) !important; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 6rem; position: relative; overflow: hidden; }
+  .hero-grid-overlay {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none;
+  }
+  .hero-eyebrow { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 2.5rem; height: 1px; background: var(--gold); }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 300; line-height: 1.05; color: #fff; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 1.1rem; font-weight: 300; color: var(--slate); max-width: 480px; margin: 1.75rem 0 2.5rem; line-height: 1.75; }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  .btn-primary { background: var(--gold); color: var(--navy-deep); border: none; padding: 0.9rem 2.2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--cream-dim); border: 1px solid rgba(221,217,207,0.25); padding: 0.9rem 2.2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* TRUST BAR */
+  .trust-bar { display: inline-flex; align-items: center; gap: 2rem; flex-wrap: wrap; padding: 1rem 1.5rem; background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15); margin-bottom: 3.5rem; }
+  .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--cream-dim); font-weight: 300; }
+  .trust-check { width: 16px; height: 16px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 0.6rem; flex-shrink: 0; }
+  .trust-divider { width: 1px; height: 14px; background: rgba(201,168,76,0.2); }
+
+  .hero-stats { display: flex; gap: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(201,168,76,0.15); }
+  .hero-stat-num { font-family: var(--font-display); font-size: 2.25rem; font-weight: 300; color: var(--gold); line-height: 1; }
+  .hero-stat-label { font-size: 0.72rem; color: var(--slate); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.35rem; }
+
+  /* SHARED */
+  section { padding: 6rem 4rem; }
+  .section-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-label::before { content: ''; width: 2rem; height: 1px; background: var(--gold); }
+  .section-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 300; color: #fff; line-height: 1.15; margin-bottom: 1rem; }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-desc { color: var(--slate); font-size: 1.1rem; line-height: 1.8; max-width: 520px; font-weight: 300; }
+
+  /* HOW IT WORKS */
+  .how { background: var(--navy); }
+  .how-steps { display: grid; grid-template-columns: repeat(4,1fr); position: relative; margin-top: 3.5rem; }
+  .how-steps::before { content: ''; position: absolute; top: 28px; left: calc(12.5% + 14px); right: calc(12.5% + 14px); height: 1px; background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim)); }
+  .how-step { padding: 0 1.5rem 0 0; }
+  .how-step:last-child { padding-right: 0; }
+  .how-num { width: 56px; height: 56px; flex-shrink: 0; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; background: var(--navy); position: relative; z-index: 1; margin-bottom: 1.5rem; }
+  .how-num-inner { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--gold); }
+  .how-phase { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.4rem; }
+  .how-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: #fff; margin-bottom: 0.6rem; line-height: 1.2; }
+  .how-desc { font-size: 1rem; color: var(--slate); line-height: 1.75; font-weight: 300; }
+  .how-detail { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(201,168,76,0.1); }
+  .how-detail-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.875rem; color: var(--slate); margin-bottom: 0.4rem; font-weight: 300; }
+  .how-detail-dot { color: var(--gold); margin-top: 0.15rem; flex-shrink: 0; font-size: 0.6rem; }
+  .how-cta { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(201,168,76,0.12); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .how-cta-text { font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; color: #fff; }
+  .how-cta-text em { font-style: italic; color: var(--gold); }
+
+  /* SERVICES */
+  .services { background: var(--navy-deep); }
+  .services-header { margin-bottom: 3.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.1); }
+  .service-card { background: var(--navy-deep); padding: 2.5rem 2rem; transition: background 0.25s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.3s; }
+  .service-card:hover { background: var(--navy-mid); }
+  .service-card:hover::after { width: 100%; }
+  .service-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold-dim); letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+  .service-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; color: #fff; margin-bottom: 0.75rem; line-height: 1.2; }
+  .service-desc { font-size: 1rem; color: var(--slate); line-height: 1.7; font-weight: 300; }
+
+  /* NICHE */
+  .niche { background: var(--navy); padding: 5rem 4rem; border-top: 1px solid rgba(201,168,76,0.12); border-bottom: 1px solid rgba(201,168,76,0.12); }
+  .niche-inner { display: flex; align-items: center; gap: 5rem; }
+  .niche-text { flex: 1; }
+  .niche-text h2 { font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 300; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+  .niche-text h2 em { font-style: italic; color: var(--gold); }
+  .niche-text p { color: var(--slate); font-size: 1rem; line-height: 1.8; max-width: 440px; font-weight: 300; }
+  .niche-pills { display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; }
+  .niche-pill { display: flex; align-items: center; gap: 0.75rem; background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.2); padding: 0.75rem 1.25rem; font-size: 0.8rem; color: var(--cream-dim); letter-spacing: 0.06em; min-width: 240px; }
+  .niche-pill-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--navy-deep); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .portfolio-card { background: var(--navy); border: 1px solid rgba(201,168,76,0.12); padding: 2rem; transition: border-color 0.25s, transform 0.2s; text-decoration: none; display: block; }
+  .portfolio-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
+  .portfolio-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); border: 1px solid rgba(201,168,76,0.2); padding: 0.25rem 0.65rem; margin-bottom: 1.25rem; }
+  .portfolio-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: #fff; margin-bottom: 0.5rem; }
+  .portfolio-desc { font-size: 1rem; color: var(--slate); line-height: 1.7; font-weight: 300; margin-bottom: 1.5rem; }
+  .portfolio-link { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem; }
+  .portfolio-link::after { content: '→'; }
+
+  /* ABOUT */
+  .about { background: var(--navy); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); padding: 0.5rem 1rem; font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 2rem; }
+  .about-quote { font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 300; color: #fff; line-height: 1.3; margin-bottom: 1.5rem; }
+  .about-quote em { font-style: italic; color: var(--gold); }
+  .about-body { font-size: 1rem; color: var(--slate); line-height: 1.85; font-weight: 300; margin-bottom: 1.25rem; }
+  .about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .about-fact { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.12); padding: 1.25rem; }
+  .about-fact-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--gold); line-height: 1; }
+  .about-fact-label { font-size: 0.72rem; color: var(--slate); letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+  /* CONTACT */
+  .contact { background: var(--navy-deep); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+  .contact-channels { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .contact-channel { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem 1.5rem; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.12); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+  .contact-channel:hover { border-color: rgba(201,168,76,0.35); background: rgba(201,168,76,0.08); }
+  .contact-channel-icon { width: 36px; height: 36px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
+  .contact-channel-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.12em; font-family: var(--font-mono); }
+  .contact-channel-val { font-size: 1rem; color: var(--cream); margin-top: 0.15rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-size: 0.65rem; color: var(--slate); letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-mono); }
+  .form-input { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); color: var(--cream); padding: 0.75rem 1rem; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: rgba(138,148,166,0.5); }
+  .form-textarea { resize: vertical; min-height: 110px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* FOOTER */
+  footer { background: var(--navy-deep); padding: 2.5rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,0.12); }
+  .footer-logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: #fff; }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { font-size: 0.72rem; color: var(--slate); font-weight: 300; }
+  .footer-tagline { font-family: var(--font-display); font-style: italic; color: var(--gold-dim); font-size: 0.85rem; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--navy); border-top: 1px solid rgba(201,168,76,0.12); border-bottom: 1px solid rgba(201,168,76,0.12); padding: 5rem 0; }
+  .testimonials-header { padding: 0 4rem; margin-bottom: 3rem; }
+  .testimonials-track-wrapper { overflow: hidden; position: relative; }
+  .testimonials-track-wrapper::before,
+  .testimonials-track-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+  .testimonials-track-wrapper::before { left: 0; background: linear-gradient(90deg, var(--navy), transparent); }
+  .testimonials-track-wrapper::after { right: 0; background: linear-gradient(270deg, var(--navy), transparent); }
+  .testimonials-track { display: flex; width: max-content; animation: testimonial-marquee 36s linear infinite; will-change: transform; user-select: none; }
+  .testimonial-card { width: 380px; flex-shrink: 0; margin-right: 1.5rem; background: var(--navy-deep); border: 1px solid rgba(201,168,76,0.15); padding: 2rem; }
+  .testimonial-quote-icon { font-family: var(--font-display); font-size: 3.5rem; color: var(--gold); line-height: 0.8; margin-bottom: 1rem; display: block; }
+  .testimonial-quote { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; color: var(--cream-dim); line-height: 1.7; font-weight: 300; margin-bottom: 1.5rem; }
+  .testimonial-divider { width: 2rem; height: 1px; background: var(--gold); margin-bottom: 1.25rem; }
+  .testimonial-name { font-size: 0.9rem; color: var(--cream); font-weight: 500; }
+  .testimonial-company { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold-dim); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.3rem; }
+  @keyframes testimonial-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* RESPONSIVE */
+
+  /* Tablet: 768px – 1023px */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    nav { padding: 1.25rem 2rem; }
+    section { padding: 5rem 2.5rem; }
+    .hero { padding: 7rem 2.5rem 5rem; }
+    .niche { padding: 4rem 2.5rem; }
+    footer { padding: 2rem 2.5rem; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .how-steps { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
+    .how-steps::before { display: none; }
+    .about-inner { gap: 3rem; }
+    .contact-inner { gap: 3rem; }
+    .niche-inner { gap: 3rem; }
+  }
+
+  /* Mobile: up to 767px */
+  @media (max-width: 767px) {
+    /* Nav */
+    nav { padding: 1rem 1.25rem; }
+    .nav-links li:not(:last-child) { display: none; }
+
+    /* Sections */
+    section { padding: 4rem 1.25rem; }
+    .niche { padding: 3.5rem 1.25rem; }
+
+    /* Hero */
+    .hero { padding: 6rem 1.25rem 3.5rem; }
+    .hero h1 { font-size: clamp(2.6rem, 11vw, 3.75rem); }
+    .hero-eyebrow { font-size: 0.65rem; }
+    .hero-sub { font-size: 1rem; margin: 1.25rem 0 1.75rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost { text-align: center; }
+    .trust-bar { gap: 0.75rem 1.25rem; padding: 0.85rem 1rem; width: 100%; }
+    .trust-divider { display: none; }
+    .trust-item { font-size: 0.8rem; }
+    .hero-stats { gap: 1.75rem; flex-wrap: wrap; padding-top: 2rem; }
+    .hero-stat-num { font-size: 1.85rem; }
+
+    /* Section shared */
+    .section-title { font-size: clamp(1.85rem, 8vw, 2.75rem); }
+    .section-desc { font-size: 1rem; }
+
+    /* How it works */
+    .how-steps { grid-template-columns: 1fr; gap: 0; }
+    .how-steps::before { display: none; }
+    .how-step { padding: 0 0 2rem 0; margin-bottom: 2rem; border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .how-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .how-cta { flex-direction: column; align-items: stretch; gap: 1.5rem; }
+    .how-cta .btn-primary { text-align: center; }
+    .how-cta-text { font-size: 1.3rem; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr; }
+
+    /* Niche */
+    .niche-inner { flex-direction: column; gap: 2.5rem; align-items: flex-start; }
+    .niche-pill { min-width: 0; width: 100%; }
+
+    /* Portfolio */
+    .portfolio-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+    /* About */
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    /* Contact */
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Footer */
+    footer { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 2rem 1.25rem; }
+
+    /* Testimonials */
+    .testimonials { padding: 4rem 0; }
+    .testimonials-header { padding: 0 1.25rem; }
+    .testimonial-card { width: 280px; padding: 1.5rem; }
+    .testimonials-track-wrapper::before,
+    .testimonials-track-wrapper::after { width: 40px; }
+  }
+
+  /* WHATSAPP FLOAT */
+  .wa-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; background: #25D366; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.3); text-decoration: none; transition: transform 0.2s; }
+  .wa-float:hover { transform: scale(1.08); }
+  .wa-float svg { width: 26px; height: 26px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Yume<span>flow</span></a>
+  <ul class="nav-links">
+    <li><a href="#process">Process</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-eyebrow">Digital Partner for Construction & Property Businesses</div>
+  <h1>From <em>Blueprint</em><br>to Browser.</h1>
+  <p class="hero-sub">We help construction firms and estate agencies build a commanding digital presence — professional websites, search visibility, and AI-powered tools that win clients before you make the first call.</p>
+  <div class="hero-actions">
+    <a href="https://wa.me/60128086073?text=Hi%20Yumeflow%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20get%20a%20free%20consultation." class="btn-primary" target="_blank">WhatsApp Us</a>
+    <a href="#portfolio" class="btn-ghost">View Our Work</a>
+  </div>
+  <div class="trust-bar">
+    <div class="trust-item"><div class="trust-check">✓</div>Free Consultation</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-check">✓</div>No Commitment Required</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-check">✓</div>7–14 Day Turnaround</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-check">✓</div>Direct Communication</div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Paying Clients Delivered</div></div>
+    <div><div class="hero-stat-num">4</div><div class="hero-stat-label">Live Projects</div></div>
+    <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Client Satisfaction</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="process">
+  <div class="section-label">The Process</div>
+  <h2 class="section-title">From first conversation<br>to <em>live website</em> — here's how it works.</h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-num"><div class="how-num-inner">01</div></div>
+      <div class="how-phase">Week 1</div>
+      <div class="how-title">Discovery Call</div>
+      <div class="how-desc">A free conversation about your business, your goals, and who you want to reach online.</div>
+      <div class="how-detail">
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>Understand your services & target clients</div>
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>Agree on scope & timeline</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num"><div class="how-num-inner">02</div></div>
+      <div class="how-phase">Week 1–2</div>
+      <div class="how-title">Design & Strategy</div>
+      <div class="how-desc">A custom design built around your brand — not a template. You approve before we build.</div>
+      <div class="how-detail">
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>Custom design mockup for your approval</div>
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>Copywriting & SEO keyword research</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num"><div class="how-num-inner">03</div></div>
+      <div class="how-phase">Week 2–3</div>
+      <div class="how-title">Build & Refine</div>
+      <div class="how-desc">Your website comes to life with regular updates and a feedback round to get everything right.</div>
+      <div class="how-detail">
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>Full development & mobile optimisation</div>
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>WhatsApp & contact integrations</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num"><div class="how-num-inner">04</div></div>
+      <div class="how-phase">Week 3–4</div>
+      <div class="how-title">Launch & Grow</div>
+      <div class="how-desc">We go live, submit to Google, and hand you the keys — with ongoing SEO available to keep results growing.</div>
+      <div class="how-detail">
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>Domain setup & deployment</div>
+        <div class="how-detail-item"><span class="how-detail-dot">▸</span>Google Search Console submission</div>
+      </div>
+    </div>
+  </div>
+  <div class="how-cta">
+    <div class="how-cta-text">Ready to start? <em>It begins with a free call.</em></div>
+    <a href="https://wa.me/60128086073?text=Hi%20Yumeflow%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20get%20a%20free%20consultation." class="btn-primary" target="_blank">Book Free Consultation →</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Six ways we grow<br>your <em>online presence</em></h2>
+    <p class="section-desc" style="margin-top:1rem;">Everything your trade or property business needs to stand out online — built by someone who understands your industry.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Website Design & Development</div>
+      <div class="service-desc">Fast, professional websites built to convert visitors into enquiries — mobile-first and tailored to your brand.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">SEO & Search Visibility</div>
+      <div class="service-desc">Get found on Google by buyers and developers actively searching for your services in your area.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Online Presence & Branding</div>
+      <div class="service-desc">From Google Business Profile to brand identity — your business looks the part everywhere clients find you.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-name">AI Chatbot Integration</div>
+      <div class="service-desc">A 24/7 assistant that answers enquiries and qualifies leads on your website — even while you're on-site.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-name">Google Business Profile Setup</div>
+      <div class="service-desc">A fully optimised listing so you appear in Google Maps searches, complete with photos and review strategy.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-name">Social Media Setup & Strategy</div>
+      <div class="service-desc">Professional profiles and a posting framework that keep your brand visible without consuming your time.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NICHE BANNER -->
+<div class="niche">
+  <div class="niche-inner">
+    <div class="niche-text">
+      <div class="section-label">Our Focus</div>
+      <h2>Built for <em>construction</em><br>and property professionals.</h2>
+      <p style="margin-top:1rem;">We don't serve everyone. We focus specifically on construction companies, renovation contractors, and estate agencies — so everything we build speaks directly to your clients and ranks for searches that matter to your business.</p>
+    </div>
+    <div class="niche-pills">
+      <div class="niche-pill"><div class="niche-pill-dot"></div>Construction & Renovation Contractors</div>
+      <div class="niche-pill"><div class="niche-pill-dot"></div>Estate Agencies & Property Agents</div>
+      <div class="niche-pill"><div class="niche-pill-dot"></div>Property Developers</div>
+      <div class="niche-pill"><div class="niche-pill-dot"></div>Interior Design Firms</div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="section-label">Our Work</div>
+  <h2 class="section-title">Real projects.<br><em>Real results.</em></h2>
+  <div class="portfolio-grid">
+    <a href="https://charlesnyang.com" class="portfolio-card" target="_blank">
+      <div class="portfolio-tag">Personal / Portfolio</div>
+      <div class="portfolio-title">charlesnyang.com</div>
+      <div class="portfolio-desc">A personal portfolio site built to make a strong first impression with clients and employers.</div>
+      <div class="portfolio-link">View Live Site</div>
+    </a>
+    <a href="https://paintbuildcoating.com" class="portfolio-card" target="_blank">
+      <div class="portfolio-tag">Construction Industry</div>
+      <div class="portfolio-title">Paint Build Coating</div>
+      <div class="portfolio-desc">A full business website for a painting contractor — services, project gallery, and a clear estimate CTA.</div>
+      <div class="portfolio-link">View Live Site</div>
+    </a>
+    <a href="https://grabngotrading.com" class="portfolio-card" target="_blank">
+      <div class="portfolio-tag">F&B / Retail</div>
+      <div class="portfolio-title">GrabNGo Trading</div>
+      <div class="portfolio-desc">A consumer landing page for a vending machine business — branding, product showcase, and customer engagement.</div>
+      <div class="portfolio-link">View Live Site</div>
+    </a>
+    <a href="https://app.grabngotrading.com" class="portfolio-card" target="_blank">
+      <div class="portfolio-tag">Web Application</div>
+      <div class="portfolio-title">Vending Manager App</div>
+      <div class="portfolio-desc">A custom management app with inventory tracking, transaction reporting, and sales analytics.</div>
+      <div class="portfolio-link">View Live App</div>
+    </a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="testimonials-header">
+    <div class="section-label">What Clients Say</div>
+    <h2 class="section-title">Trusted by <em>real businesses.</em></h2>
+  </div>
+  <div class="testimonials-track-wrapper">
+    <div class="testimonials-track">
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">Working with Yumeflow was a game-changer for our business. Our website now reflects the quality of our work, and we're getting enquiries we never had before.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Construction Industry</div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">We went from having no online presence to showing up on the first page of Google. The results have been beyond what we expected, and so quickly.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Estate Agency</div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">Professional, fast, and genuinely invested in our success. Our enquiry volume has doubled since the website launched, and the quality of leads is much better.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Property Developer</div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">Unlike other agencies, Yumeflow actually understands the renovation industry. The copy on our site speaks directly to our clients — it doesn't feel generic at all.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Renovation Contractor</div>
+      </div>
+      <!-- Duplicated set for seamless infinite loop -->
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">Working with Yumeflow was a game-changer for our business. Our website now reflects the quality of our work, and we're getting enquiries we never had before.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Construction Industry</div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">We went from having no online presence to showing up on the first page of Google. The results have been beyond what we expected, and so quickly.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Estate Agency</div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">Professional, fast, and genuinely invested in our success. Our enquiry volume has doubled since the website launched, and the quality of leads is much better.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Property Developer</div>
+      </div>
+      <div class="testimonial-card">
+        <span class="testimonial-quote-icon">"</span>
+        <p class="testimonial-quote">Unlike other agencies, Yumeflow actually understands the renovation industry. The copy on our site speaks directly to our clients — it doesn't feel generic at all.</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">[Client Name]</div>
+        <div class="testimonial-company">Renovation Contractor</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="section-label">About Yumeflow</div>
+      <div class="about-quote">A developer who builds for the <em>real world</em> — not just the classroom.</div>
+      <div class="about-badge">⚡ Currently Accepting New Clients</div>
+    </div>
+    <div class="about-right">
+      <p class="about-body">Yumeflow is run by a Year 2 Computer Science student at Asia Pacific University — someone who started delivering real results for real businesses before graduation.</p>
+      <p class="about-body">You work directly with the person building your site — no account managers, no layers. Faster turnaround, honest pricing, and someone who genuinely understands your industry.</p>
+      <div class="about-facts">
+        <div class="about-fact"><div class="about-fact-num">3</div><div class="about-fact-label">Paying clients delivered</div></div>
+        <div class="about-fact"><div class="about-fact-num">APU</div><div class="about-fact-label">Asia Pacific University, KL</div></div>
+        <div class="about-fact"><div class="about-fact-num">CS</div><div class="about-fact-label">Data Analysis track, Year 2</div></div>
+        <div class="about-fact"><div class="about-fact-num">Fast</div><div class="about-fact-label">Direct communication, quick turnaround</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's build your<br><em>digital foundation.</em></h2>
+      <p class="section-desc" style="margin-top:1rem;">Whether you need a website from scratch, want to improve your Google ranking, or are curious about what a chatbot could do for your business — reach out and let's have a conversation.</p>
+      <div class="contact-channels">
+        <a href="https://wa.me/60128086073?text=Hi%20Yumeflow%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20get%20a%20free%20consultation." class="contact-channel" target="_blank">
+          <div class="contact-channel-icon">💬</div>
+          <div><div class="contact-channel-label">WhatsApp</div><div class="contact-channel-val">012-808-6073</div></div>
+        </a>
+        <a href="mailto:charles@yumeflow.com" class="contact-channel">
+          <div class="contact-channel-icon">✉</div>
+          <div><div class="contact-channel-label">Email</div><div class="contact-channel-val">charles@yumeflow.com</div></div>
+        </a>
+        <a href="https://wa.me/60128086073?text=Hi%20Yumeflow%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20get%20a%20free%20consultation." class="contact-channel" target="_blank">
+          <div class="contact-channel-icon">📅</div>
+          <div><div class="contact-channel-label">Book a Consultation</div><div class="contact-channel-val">Free 30-min strategy call via WhatsApp</div></div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Ahmad Razif"></div>
+          <div class="form-group"><label class="form-label">Company</label><input type="text" class="form-input" placeholder="ABC Construction Sdn Bhd"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@company.com"></div>
+        <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input type="text" class="form-input" placeholder="012-345 6789"></div>
+        <div class="form-group"><label class="form-label">What Do You Need?</label><textarea class="form-input form-textarea" placeholder="Tell us about your business and what you're looking to achieve online..."></textarea></div>
+        <button class="btn-primary" style="align-self:flex-start; margin-top:0.5rem;">Send Enquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Yume<span>flow</span></div>
+  <div class="footer-tagline">From Blueprint to Browser.</div>
+  <div class="footer-copy">© 2026 Yumeflow. All rights reserved.</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/60128086073?text=Hi%20Yumeflow%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20get%20a%20free%20consultation." class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
