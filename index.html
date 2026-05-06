@@ -187,7 +187,6 @@
     .hero { padding: 7rem 2.5rem 5rem; }
     .niche { padding: 4rem 2.5rem; }
     footer { padding: 2rem 2.5rem; }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
     .how-steps { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
     .how-steps::before { display: none; }
     .about-inner { gap: 3rem; }
@@ -197,67 +196,83 @@
 
   /* Mobile: up to 767px */
   @media (max-width: 767px) {
-    /* Nav */
+    body { font-size: 16px; }
+
+    /* Nav: logo left, CTA button right, all other links hidden */
     nav { padding: 1rem 1.25rem; }
     .nav-links li:not(:last-child) { display: none; }
 
     /* Sections */
-    section { padding: 4rem 1.25rem; }
-    .niche { padding: 3.5rem 1.25rem; }
+    section { padding: 3rem 1.5rem; }
+    .niche { padding: 3rem 1.5rem; }
 
     /* Hero */
-    .hero { padding: 6rem 1.25rem 3.5rem; }
-    .hero h1 { font-size: clamp(2.6rem, 11vw, 3.75rem); }
+    .hero { padding: 6rem 1.5rem 3.5rem; }
+    .hero h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); }
     .hero-eyebrow { font-size: 0.65rem; }
     .hero-sub { font-size: 1rem; margin: 1.25rem 0 1.75rem; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .hero-actions .btn-primary,
     .hero-actions .btn-ghost { text-align: center; }
-    .trust-bar { gap: 0.75rem 1.25rem; padding: 0.85rem 1rem; width: 100%; }
+
+    /* Trust bar: 2-column grid, dividers hidden */
+    .trust-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.85rem 1rem; width: 100%; }
     .trust-divider { display: none; }
     .trust-item { font-size: 0.8rem; }
-    .hero-stats { gap: 1.75rem; flex-wrap: wrap; padding-top: 2rem; }
-    .hero-stat-num { font-size: 1.85rem; }
+
+    /* Stats: 3 items per row, smaller text */
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding-top: 2rem; }
+    .hero-stat-num { font-size: 1.5rem; }
+    .hero-stat-label { font-size: 0.62rem; }
 
     /* Section shared */
     .section-title { font-size: clamp(1.85rem, 8vw, 2.75rem); }
     .section-desc { font-size: 1rem; }
 
-    /* How it works */
+    /* How it works: 1-column, connector line hidden, steps stacked */
     .how-steps { grid-template-columns: 1fr; gap: 0; }
     .how-steps::before { display: none; }
     .how-step { padding: 0 0 2rem 0; margin-bottom: 2rem; border-bottom: 1px solid rgba(201,168,76,0.1); }
     .how-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    /* How it works CTA: stacked, button full width */
     .how-cta { flex-direction: column; align-items: stretch; gap: 1.5rem; }
-    .how-cta .btn-primary { text-align: center; }
+    .how-cta .btn-primary { text-align: center; width: 100%; }
     .how-cta-text { font-size: 1.3rem; }
 
-    /* Services */
+    /* Services: 1 column (overridden to 2 col for 641–767px below) */
     .services-grid { grid-template-columns: 1fr; }
 
-    /* Niche */
+    /* Niche: stacked, pills full width */
     .niche-inner { flex-direction: column; gap: 2.5rem; align-items: flex-start; }
     .niche-pill { min-width: 0; width: 100%; }
 
-    /* Portfolio */
+    /* Portfolio: 1 column */
     .portfolio-grid { grid-template-columns: 1fr; gap: 1rem; }
 
-    /* About */
+    /* About: 1 column, facts stay 2 col with reduced padding */
     .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-facts { grid-template-columns: 1fr 1fr; }
+    .about-fact { padding: 0.85rem; }
 
-    /* Contact */
+    /* Contact: 1 column, form-row stacked */
     .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     .form-row { grid-template-columns: 1fr; }
 
     /* Footer */
-    footer { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 2rem 1.25rem; }
+    footer { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 2rem 1.5rem; }
 
     /* Testimonials */
     .testimonials { padding: 4rem 0; }
-    .testimonials-header { padding: 0 1.25rem; }
+    .testimonials-header { padding: 0 1.5rem; }
     .testimonial-card { width: 280px; padding: 1.5rem; }
     .testimonials-track-wrapper::before,
     .testimonials-track-wrapper::after { width: 40px; }
+  }
+
+  /* Services: 2 columns for 641px–1024px (tablet range) */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* WHATSAPP FLOAT */
