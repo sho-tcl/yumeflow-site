@@ -140,21 +140,13 @@
 
   /* CONTACT */
   .contact { background: var(--navy-deep); }
-  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+  .contact-inner { display: grid; grid-template-columns: 1fr; gap: 6rem; }
   .contact-channels { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
   .contact-channel { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem 1.5rem; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.12); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
   .contact-channel:hover { border-color: rgba(201,168,76,0.35); background: rgba(201,168,76,0.08); }
   .contact-channel-icon { width: 36px; height: 36px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
   .contact-channel-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.12em; font-family: var(--font-mono); }
   .contact-channel-val { font-size: 1rem; color: var(--cream); margin-top: 0.15rem; }
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-label { font-size: 0.65rem; color: var(--slate); letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-mono); }
-  .form-input { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); color: var(--cream); padding: 0.75rem 1rem; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
-  .form-input:focus { border-color: var(--gold); }
-  .form-input::placeholder { color: rgba(138,148,166,0.5); }
-  .form-textarea { resize: vertical; min-height: 110px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
   /* FOOTER */
   footer { background: var(--navy-deep); padding: 2.5rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,0.12); }
@@ -257,9 +249,8 @@
     .about-facts { grid-template-columns: 1fr 1fr; }
     .about-fact { padding: 0.85rem; }
 
-    /* Contact: 1 column, form-row stacked */
-    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .form-row { grid-template-columns: 1fr; }
+    /* Contact */
+    .contact-inner { gap: 3rem; }
 
     /* Footer */
     footer { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 2rem 1.5rem; }
@@ -575,18 +566,6 @@
           <div class="contact-channel-icon">📅</div>
           <div><div class="contact-channel-label">Book a Consultation</div><div class="contact-channel-val">Free 30-min strategy call via WhatsApp</div></div>
         </a>
-      </div>
-    </div>
-    <div>
-      <div class="contact-form">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Ahmad Razif"></div>
-          <div class="form-group"><label class="form-label">Company</label><input type="text" class="form-input" placeholder="ABC Construction Sdn Bhd"></div>
-        </div>
-        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@company.com"></div>
-        <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input type="text" class="form-input" placeholder="012-345 6789"></div>
-        <div class="form-group"><label class="form-label">What Do You Need?</label><textarea class="form-input form-textarea" placeholder="Tell us about your business and what you're looking to achieve online..."></textarea></div>
-        <button class="btn-primary" style="align-self:flex-start; margin-top:0.5rem;">Send Enquiry →</button>
       </div>
     </div>
   </div>
